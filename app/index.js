@@ -1,14 +1,25 @@
-const fs = require('fs')
+const fs = require('fs');
+const async = require('async');
 
-console.log('start reading a file...');
+function stats(file){
+	return new Promise((resolve, reject) => {
+		fs.stat(file, (err, data) => {
+			if (err){
+				return reject(err);
+			}
+			resolve(data);
+		});
+	});
+}
 
-fs.readFile('file.md', 'utf-8', function(err, content){
-	if (err){
-		console.log('error happened during reading the file');
-		return console.log(err)
-	}
-
-	console.log(content);
+Promise.all([
+	stats('app/index.js'),
+	stats('app/calc.js'),
+	stats('app/bad.js')
+])
+.then((data) => {
+	console.log(`success: ${data}`);
+})
+.catch((err) => {
+	console.log(`error: ${err}`);
 });
-
-console.log('end of the file');
