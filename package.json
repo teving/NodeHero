@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/teving/NodeHero#readme",
   "dependencies": {
+    "async": "^2.1.2",
     "lodash": "^4.16.4"
   },
   "devDependencies": {
