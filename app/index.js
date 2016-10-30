@@ -17,11 +17,10 @@ const interface = readline.createInterface({
 	output: process.stdout
 });
 
-console.log('before first question');
 interface.question('Enter first number to add:', answer => {
 	let firstNumber, secondNumber;
 	firstNumber = +answer;
-console.log('before second question');
+
 	interface.question('Enter second number to add:', answer => {
 		secondNumber = +answer;
 
