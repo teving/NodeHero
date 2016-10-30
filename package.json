@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/teving/NodeHero/issues"
   },
-  "homepage": "https://github.com/teving/NodeHero#readme"
+  "homepage": "https://github.com/teving/NodeHero#readme",
+  "dependencies": {
+    "lodash": "^4.16.4"
+  }
 }
