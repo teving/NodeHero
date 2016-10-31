@@ -1,25 +1,17 @@
-const fs = require('fs');
-const async = require('async');
+const http = require('http');
+const port = 3000;
 
-function stats(file){
-	return new Promise((resolve, reject) => {
-		fs.stat(file, (err, data) => {
-			if (err){
-				return reject(err);
-			}
-			resolve(data);
-		});
-	});
-}
+const requestHandler = (request, response) => {
+	console.log(request.url);
+	response.end('Hello Node.js server!');
+};
 
-Promise.all([
-	stats('app/index.js'),
-	stats('app/calc.js'),
-	stats('app/bad.js')
-])
-.then((data) => {
-	console.log(`success: ${data}`);
-})
-.catch((err) => {
-	console.log(`error: ${err}`);
+const server = http.createServer(requestHandler);
+
+server.listen(port, (err) => {
+	if (err){
+		return console.log('something bad happened', err);
+	}
+
+	console.log(`server is listening on ${port}`);
 });
